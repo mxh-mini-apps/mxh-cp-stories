@@ -1,4 +1,4 @@
-# mxh-partner-match
+# mxh-partner-matcher
 To test: https://yingh95.github.io/mxh-partner-matcher/
 
 ## Project setup

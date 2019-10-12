@@ -1,0 +1,86 @@
+<template>
+    <div>
+        <h1>梅溪湖CP小短文生成器</h1>
+        <div class="row">
+            <div class="col-6">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="gong-fang">攻</label>
+                    </div>
+                    <select class="custom-select" id="gong-fang" v-model="gong">
+                        <option selected value="opt1">选择...</option>
+                        <option v-for="(name, index) in availableGong" :key="index">
+                            {{ name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="shou-fang">受</label>
+                    </div>
+                    <select class="custom-select" id="shou-fang" v-model="shou">
+                        <option selected value="opt2">选择...</option>
+                        <option v-for="(name, index) in availableShou" :key="index">
+                            {{ name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="m-2">
+            <button class="btn btn-primary" @click="writeStory" :disabled="gong === null || shou === null">生成故事</button>
+        </div>
+        <div>
+            {{ story }}
+        </div>
+    </div>
+</template>
+
+<script>
+  import members from '../../assets/members'
+  import stories from '../../assets/story'
+  export default {
+    name: "Search",
+    data: () => {
+      return {
+        gong: null,
+        shou: null,
+        story: ""
+      }
+    },
+    methods: {
+      writeStory: function () {
+        let index = Math.floor(Math.random() * stories.length);
+        this.story = stories[index]
+        .replace(new RegExp("<攻>", 'g'), this.gong)
+        .replace(new RegExp("<受>", 'g'), this.shou);
+        return this.story
+      }
+    },
+    computed: {
+      allMemberNames: function () {
+        return Object.keys(members);
+      },
+      availableGong: function () {
+        if (this.shou !== null) {
+          return this.allMemberNames.filter((n) => {return n !== this.shou})
+        } else {
+          return this.allMemberNames
+        }
+      },
+      availableShou: function () {
+        if (this.gong !== null) {
+          return this.allMemberNames.filter((n) => {return n !== this.gong})
+        } else {
+          return this.allMemberNames
+        }
+      }
+    }
+  }
+</script>
+
+<style scoped>
+
+</style>

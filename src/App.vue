@@ -1,17 +1,28 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" v-cloak>
+    <img alt="MXH36" src="./assets/mxh36.jpg">
+    <div class="card">
+      <div class="card-body">
+        <Quiz />
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <search></search>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Quiz from './components/partner-matcher/Quiz.vue'
+import Search from './components/cp-story-builder/Builder.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Quiz,
+    Search
   }
 }
 </script>

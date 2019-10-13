@@ -30,7 +30,8 @@
             </div>
         </div>
         <div class="m-2">
-            <button class="btn btn-primary" @click="writeStory" :disabled="gong === null || shou === null">生成故事</button>
+            <button class="btn btn-primary mr-1" @click="writeStory" :disabled="gong === null || shou === null">生成故事</button>
+            <button class="btn btn-secondary" @click="emailStory">投稿</button>
         </div>
         <div>
             {{ story }}
@@ -57,6 +58,9 @@
         .replace(new RegExp("<攻>", 'g'), this.gong)
         .replace(new RegExp("<受>", 'g'), this.shou);
         return this.story
+      },
+      emailStory: function () {
+        window.open('mailto:mxhcpstories@yahoo.com?subject=投稿梅溪湖小故事&body=（请用\'<攻>\'和\'<受>\'注明故事的攻受。）');
       }
     },
     computed: {

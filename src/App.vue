@@ -1,12 +1,12 @@
 <template>
-  <div id="app" v-cloak>
-    <img alt="MXH36" src="./assets/mxh36.jpg">
+  <div id="app" v-cloak class="m-1">
+    <img alt="MXH36" src="./assets/mxh36.jpg" style="max-width: 100%;height: auto">
     <div class="card" hidden>
       <div class="card-body">
         <Quiz />
       </div>
     </div>
-    <div class="card">
+    <div class="card m-1">
       <div class="card-body">
         <search></search>
       </div>

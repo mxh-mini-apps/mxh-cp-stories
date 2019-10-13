@@ -1,7 +1,7 @@
 <template>
   <div id="app" v-cloak>
     <img alt="MXH36" src="./assets/mxh36.jpg">
-    <div class="card">
+    <div class="card" hidden>
       <div class="card-body">
         <Quiz />
       </div>

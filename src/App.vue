@@ -1,6 +1,5 @@
 <template>
   <div id="app" v-cloak class="m-1">
-    <img alt="MXH36" src="./assets/mxh36.jpg" style="max-width: 100%;height: auto">
     <div class="card" hidden>
       <div class="card-body">
         <Quiz />
@@ -11,6 +10,8 @@
         <search></search>
       </div>
     </div>
+    <p><small><strong>软件声明</strong></small><br>
+    <small>此软件只限用于休闲娱乐，所有故事均为匿名投稿提供。如有雷同，纯属巧合。CP短打生成器作者将保有一切解释权。</small></p>
   </div>
 </template>
 

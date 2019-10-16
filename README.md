@@ -1,5 +1,5 @@
-# mxh-partner-matcher
-To test: https://yingh95.github.io/mxh-partner-matcher/
+# mxh-cp-stories
+To use(软件网页): https://github.com/yingH95/mxh-partner-matcher
 
 ## Project setup
 ```

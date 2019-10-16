@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: 'mxh-partner-matcher'
+  publicPath: 'mxh-cp-stories'
 };

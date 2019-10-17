@@ -26,6 +26,7 @@
         <div>
             {{ story }}
         </div>
+        <p class="mb-0 mt-4"><small>文库更新于 2019.10.17 3:45PM</small></p>
     </div>
 </template>
 
@@ -55,6 +56,12 @@
       },
       emailStory: function () {
         window.open('mailto:mxhcpstories@yahoo.com?subject=投稿梅溪湖小故事&body=（请用\'<攻>\'和\'<受>\'注明故事的攻受。内容请勿超过50字。）');
+      },
+      shuffle: function (array){
+        for (let i = array.length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
       }
     },
     computed: {
@@ -63,10 +70,11 @@
         for (let i=0; i < stories.length; i++) {
           let roleGong = stories[i]['roles']['gong'];
           let roleShou = stories[i]['roles']['shou'];
-          let roleStory = stories[i]['stories'];
+          let roleStories = stories[i]['stories'];
           if (roleGong === 'ALL' || this.gong.includes(roleGong)){
             if (roleShou === 'ALL' || this.shou.includes(roleShou)) {
-              filteredStories = filteredStories.concat(roleStory);
+              this.shuffle(roleStories);
+              filteredStories = filteredStories.concat(roleStories);
             }
           }
         }

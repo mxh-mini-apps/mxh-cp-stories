@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="m-2">
-            <button class="btn btn-primary mr-1" @click="writeStory" :disabled="gong === null || shou === null">{{btnText}}</button>
+            <button class="btn btn-primary mr-1" @click="writeStory" :disabled="gong === '' || shou === ''">{{btnText}}</button>
             <button class="btn btn-secondary" @click="emailStory">投稿</button>
         </div>
         <div>
@@ -35,15 +35,20 @@
     name: "Search",
     data: () => {
       return {
-        gong: null,
-        shou: null,
+        gong: "",
+        shou: "",
         story: ""
       }
     },
     methods: {
       writeStory: function () {
-        let index = Math.floor(Math.random() * stories.length);
-        this.story = stories[index]
+        let index;
+        if (this.story === "") {
+          index = 0
+        } else {
+          index = Math.floor(Math.random() * this.availableStories.length);
+        }
+        this.story = this.availableStories[index]
         .replace(new RegExp("<攻>", 'g'), this.gong)
         .replace(new RegExp("<受>", 'g'), this.shou);
         return this.story
@@ -53,6 +58,20 @@
       }
     },
     computed: {
+      availableStories: function () {
+        let filteredStories = [];
+        for (let i=0; i < stories.length; i++) {
+          let roleGong = stories[i]['roles']['gong'];
+          let roleShou = stories[i]['roles']['shou'];
+          let roleStory = stories[i]['stories'];
+          if (roleGong === 'ALL' || this.gong.includes(roleGong)){
+            if (roleShou === 'ALL' || this.shou.includes(roleShou)) {
+              filteredStories = filteredStories.concat(roleStory);
+            }
+          }
+        }
+        return filteredStories;
+      },
       btnText: function () {
         if (this.story !== '') {
           return "再生一个"

@@ -26,7 +26,7 @@
         <div>
             {{ story }}
         </div>
-        <p class="mb-0 mt-4"><small>文库更新于 2019.10.17 3:45PM</small></p>
+        <p class="mb-0 mt-4"><small>文库更新于 2019.10.18 3:45PM</small></p>
     </div>
 </template>
 

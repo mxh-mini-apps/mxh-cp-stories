@@ -20,8 +20,8 @@
             </div>
         </div>
         <div class="m-2">
-            <button class="btn btn-primary mr-1" @click="writeStory" :disabled="gong === '' || shou === ''">{{btnText}}</button>
-            <button class="btn btn-secondary" @click="emailStory">投稿</button>
+            <button class="btn btn-success mr-1" @click="writeStory" :disabled="gong === '' || shou === ''">{{btnText}}</button>
+            <button class="btn btn-primary" @click="emailStory">投稿</button>
         </div>
         <div>
             {{ story }}

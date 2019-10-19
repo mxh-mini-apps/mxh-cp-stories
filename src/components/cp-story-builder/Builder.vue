@@ -93,6 +93,6 @@
 
 <style scoped>
 #story {
-    white-space: pre
+    white-space: pre-wrap;
 }
 </style>

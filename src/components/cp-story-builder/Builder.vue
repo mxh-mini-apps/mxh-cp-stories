@@ -24,9 +24,9 @@
             <button class="btn btn-primary" @click="emailStory">投稿</button>
         </div>
         <div>
-            {{ story }}
+            <p id="story">{{ story }}</p>
         </div>
-        <p class="mb-0 mt-4"><small>文库更新于 2019.10.18 3:45PM</small></p>
+        <p class="mb-0 mt-4"><small>文库更新于 2019.10.20 5:15AM</small></p>
     </div>
 </template>
 
@@ -92,5 +92,7 @@
 </script>
 
 <style scoped>
-
+#story {
+    white-space: pre
+}
 </style>

@@ -26,7 +26,7 @@
         <div>
             <p id="story">{{ story }}</p>
         </div>
-        <p class="mb-0 mt-4"><small>文库更新于 2019.10.20 5:15AM</small></p>
+        <p class="mb-0 mt-4"><small>文库更新于 2019.10.20 3:15PM</small></p>
     </div>
 </template>
 
@@ -55,7 +55,8 @@
         return this.story
       },
       emailStory: function () {
-        window.open('mailto:mxhcpstories@yahoo.com?subject=投稿梅溪湖小故事&body=（请用\'<攻>\'和\'<受>\'注明故事的攻受。内容请勿超过50字。）');
+        let c = 'mailto:mxhcpstories@yahoo.com?subject=投稿CP短打文&body=（请用\'<攻>\'和\'<受>\'注明故事的攻受，如果想投定制文的话请备注人物姓名哦！内容请勿超过50字。）';
+        window.open(c);
       },
       shuffle: function (array){
         for (let i = array.length - 1; i > 0; i--) {

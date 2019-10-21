@@ -21,12 +21,13 @@
         </div>
         <div class="m-2">
             <button class="btn btn-success mr-1" @click="writeStory" :disabled="gong === '' || shou === ''">{{btnText}}</button>
-            <button class="btn btn-primary" @click="emailStory">投稿</button>
+            <button class="btn btn-primary" @click="emailStory" disabled>投稿</button>
         </div>
         <div>
             <p id="story">{{ story }}</p>
         </div>
-        <p class="mb-0 mt-4"><small>文库更新于 2019.10.20 3:15PM</small></p>
+        <p class="mb-0 mt-4"><small>文库更新于 2019.10.21 9:25AM</small></p>
+        <span class="badge badge-info">新增100篇</span>
     </div>
 </template>
 

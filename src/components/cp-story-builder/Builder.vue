@@ -21,18 +21,20 @@
         </div>
         <div class="m-2">
             <button class="btn btn-success mr-1" @click="writeStory" :disabled="gong === '' || shou === ''">{{btnText}}</button>
-            <button class="btn btn-primary" @click="emailStory" disabled>投稿</button>
+            <button class="btn btn-primary" @click="emailStory">投稿</button>
         </div>
-        <div>
+        <div class="text-left ml-4 mr-4">
             <p id="story">{{ story }}</p>
         </div>
-        <p class="mb-0 mt-4"><small>文库更新于 2019.10.21 9:25AM</small></p>
-        <span class="badge badge-info">新增100篇</span>
+        <p class="mb-0 mt-4"><small>文库更新于 2019.10.24 12:00PM</small></p>
+        <span class="badge badge-info">新增25篇</span>
+        <span class="badge badge-secondary ml-2">开放投稿</span>
     </div>
 </template>
 
 <script>
   import stories from '../../assets/story'
+  import leaders from '../../assets/leaders'
   export default {
     name: "Search",
     data: () => {
@@ -50,10 +52,30 @@
         } else {
           index = Math.floor(Math.random() * this.availableStories.length);
         }
-        this.story = this.availableStories[index]
-        .replace(new RegExp("<攻>", 'g'), this.gong)
-        .replace(new RegExp("<受>", 'g'), this.shou);
+        if (!this.isSpecialNames(this.gong, this.shou)){
+          this.story = this.availableStories[index]
+          .replace(new RegExp("<攻>", 'g'), this.gong)
+          .replace(new RegExp("<受>", 'g'), this.shou);
+        } else {
+          this.story = ""
+        }
+        this.sendAnalytics();
         return this.story
+      },
+      track: function () {
+        this.$ga.page('/')
+      },
+      sendAnalytics: function () {
+        this.$ga.event({
+          eventCategory: 'Write Story',
+          eventAction: 'click',
+          eventLabel: 'Write',
+          eventValue: {'gong': this.gong, 'shou': this.shou}
+        })
+      },
+      isSpecialNames: function (g, s) {
+        return leaders.includes(g.replace(/\s/g,'').toLowerCase()) ||
+          leaders.includes(s.replace(/\s/g,'').toLowerCase());
       },
       emailStory: function () {
         let c = 'mailto:mxhcpstories@yahoo.com?subject=投稿CP短打文&body=（请用\'<攻>\'和\'<受>\'注明故事的攻受，如果想投定制文的话请备注人物姓名哦！内容请勿超过50字。）';
@@ -94,7 +116,7 @@
 </script>
 
 <style scoped>
-#story {
-    white-space: pre-wrap;
-}
+    #story {
+        white-space: pre-wrap;
+    }
 </style>

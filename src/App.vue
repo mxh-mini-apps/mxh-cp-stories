@@ -41,6 +41,9 @@
       return {
         showNotice: true
       }
+    },
+    created() {
+      this.$ga.page('/')
     }
   }
 </script>

@@ -41,11 +41,14 @@
       return {
         gong: "",
         shou: "",
-        story: ""
+        story: "",
+        clicks: 0
       }
     },
     methods: {
       writeStory: function () {
+        this.clicks = this.clicks + 1;
+        this.sendAnalytics();
         let index;
         if (this.story === "") {
           index = 0
@@ -59,18 +62,14 @@
         } else {
           this.story = ""
         }
-        this.sendAnalytics();
         return this.story
-      },
-      track: function () {
-        this.$ga.page('/')
       },
       sendAnalytics: function () {
         this.$ga.event({
           eventCategory: 'Write Story',
           eventAction: 'click',
-          eventLabel: 'Write',
-          eventValue: {'gong': this.gong, 'shou': this.shou}
+          eventLabel: this.gong + ' ' + this.shou,
+          eventValue: this.clicks
         })
       },
       isSpecialNames: function (g, s) {

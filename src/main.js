@@ -11,7 +11,8 @@ Vue.use(VueAnalytics, {
   id: 'UA-150354610-1',
   autoTracking: {
     screenview: true
-  }
+  },
+  trackEvent: true
 });
 
 new Vue({

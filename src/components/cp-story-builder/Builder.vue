@@ -3,7 +3,7 @@
         <h1>CP短打生成器</h1>
         <div class="row">
             <div class="col-6">
-                <div class="input-group mb-2">
+                <div class="input-group mb-2" :class="hasSpecialStory ? 'special':''">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="gong-fang">攻</label>
                     </div>
@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <div class="input-group mb-2">
+                <div class="input-group mb-2" :class="hasSpecialStory ? 'special':''">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="shou-fang">受</label>
                     </div>
@@ -20,15 +20,29 @@
             </div>
         </div>
         <div class="m-2">
-            <button class="btn btn-success mr-1" @click="writeStory" :disabled="gong === '' || shou === ''">{{btnText}}</button>
-            <button class="btn btn-primary" @click="emailStory">投稿</button>
+            <button class="btn btn-success mr-1" @click="writeStory" id="write-story"
+                    :class="hasSpecialStory ? 'special':''" :disabled="gong === '' || shou === ''">
+                {{btnText}}
+            </button>
+            <button class="btn btn-primary" @click="emailStory" disabled>投稿</button>
         </div>
         <div class="text-left ml-4 mr-4">
             <p id="story">{{ story }}</p>
         </div>
+<!--        <div v-if="story !== ''">-->
+<!--            <button class="btn btn-light btn-sm border mb-1" type="button" data-toggle="collapse" data-target="#collapseText" aria-expanded="false" aria-controls="collapseText">-->
+<!--                作者的话-->
+<!--            </button>-->
+<!--            <div class="collapse" id="collapseText">-->
+<!--                <div class="card card-body p-2">-->
+<!--                    <small>-->
+<!--                    </small>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
         <p class="mb-0 mt-4"><small>文库更新于 2019.10.24 12:00PM</small></p>
-        <span class="badge badge-info">新增25篇</span>
-        <span class="badge badge-secondary ml-2">开放投稿</span>
+        <span class="badge badge-warning">新功能：定制文提示</span>
+        <span class="badge badge-secondary ml-2">暂停投稿</span>
     </div>
 </template>
 
@@ -42,7 +56,9 @@
         gong: "",
         shou: "",
         story: "",
-        clicks: 0
+        clicks: 0,
+        changedCouple: false,
+        hasSpecialStory: false
       }
     },
     methods: {
@@ -50,7 +66,7 @@
         this.clicks = this.clicks + 1;
         this.sendAnalytics();
         let index;
-        if (this.story === "") {
+        if (this.changedCouple) {
           index = 0
         } else {
           index = Math.floor(Math.random() * this.availableStories.length);
@@ -62,13 +78,14 @@
         } else {
           this.story = ""
         }
+        this.changedCouple = false;
         return this.story
       },
       sendAnalytics: function () {
         this.$ga.event({
           eventCategory: 'Write Story',
           eventAction: 'click',
-          eventLabel: this.gong + ' ' + this.shou,
+          eventLabel: this.couple,
           eventValue: this.clicks
         })
       },
@@ -90,24 +107,43 @@
     computed: {
       availableStories: function () {
         let filteredStories = [];
+        let foundSpecialStory = false;
         for (let i=0; i < stories.length; i++) {
           let roleGong = stories[i]['roles']['gong'];
           let roleShou = stories[i]['roles']['shou'];
           let roleStories = stories[i]['stories'];
           if (roleGong === 'ALL' || this.gong.includes(roleGong)){
             if (roleShou === 'ALL' || this.shou.includes(roleShou)) {
+              if (i !== stories.length - 1) {
+                foundSpecialStory = true;
+                this.$forceUpdate()
+              }
               this.shuffle(roleStories);
               filteredStories = filteredStories.concat(roleStories);
             }
           }
         }
+        this.hasSpecialStory = foundSpecialStory;
         return filteredStories;
       },
       btnText: function () {
-        if (this.story !== '') {
+        if (this.hasSpecialStory && this.changedCouple) {
+          return "解锁定制故事"
+        } else if (this.story !== '' && !this.changedCouple) {
           return "再生一个"
         } else {
           return "生成故事"
+        }
+      },
+      couple: function () {
+        return this.gong + ' ' + this.shou
+      }
+    },
+    watch: {
+      couple: function (newCouple, oldCouple) {
+        if (newCouple !== oldCouple) {
+          console.log(this.couple);
+          this.changedCouple = true;
         }
       }
     }
@@ -117,5 +153,21 @@
 <style scoped>
     #story {
         white-space: pre-wrap;
+    }
+    .special .form-control {
+        border-color: lightcoral !important;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px coral !important;
+    }
+    .special .input-group-text {
+        border-color: lightcoral !important;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px coral !important;
+    }
+    #write-story.special {
+        background-color: lightcoral;
+        border-color: coral;
+    }
+    #write-story.special:focus {
+        border-color: lightcoral !important;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px coral !important;
     }
 </style>

@@ -3,25 +3,25 @@
         <h1>CP短打生成器</h1>
         <div class="row">
             <div class="col-6">
-                <div class="input-group mb-2" :class="hasSpecialStory ? 'special':''">
+                <div class="input-group mb-2" :class="isSpecial">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="gong-fang">攻</label>
+                        <label class="input-group-text" :class="isSpecial" for="gong-fang">攻</label>
                     </div>
                     <input type="text" id="gong-fang" v-model="gong" class="form-control"/>
                 </div>
             </div>
             <div class="col-6">
-                <div class="input-group mb-2" :class="hasSpecialStory ? 'special':''">
+                <div class="input-group mb-2" :class="isSpecial">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="shou-fang">受</label>
+                        <label class="input-group-text" :class="isSpecial" for="shou-fang">受</label>
                     </div>
                     <input type="text" id="shou-fang" v-model="shou" class="form-control"/>
                 </div>
             </div>
         </div>
         <div class="m-2">
-            <button class="btn btn-success mr-1" @click="writeStory" id="write-story"
-                    :class="hasSpecialStory ? 'special':''" :disabled="gong === '' || shou === ''">
+            <button class="btn btn-success mr-1" @click="writeStory" id="write-story" :class="isSpecial"
+                    :disabled="gong === '' || shou === ''">
                 {{btnText}}
             </button>
             <button class="btn btn-primary" @click="emailStory" disabled>投稿</button>
@@ -41,7 +41,7 @@
 <!--            </div>-->
 <!--        </div>-->
         <p class="mb-0 mt-4"><small>文库更新于 2019.10.24 12:00PM</small></p>
-        <span class="badge badge-warning">新功能：定制文提示</span>
+        <span class="badge badge-warning">新功能：解锁定制文提示</span>
         <span class="badge badge-secondary ml-2">暂停投稿</span>
     </div>
 </template>
@@ -57,8 +57,7 @@
         shou: "",
         story: "",
         clicks: 0,
-        changedCouple: false,
-        hasSpecialStory: false
+        changedCouple: false
       }
     },
     methods: {
@@ -69,10 +68,10 @@
         if (this.changedCouple) {
           index = 0
         } else {
-          index = Math.floor(Math.random() * this.availableStories.length);
+          index = Math.floor(Math.random() * this.availableStories.stories.length);
         }
         if (!this.isSpecialNames(this.gong, this.shou)){
-          this.story = this.availableStories[index]
+          this.story = this.availableStories.stories[index]
           .replace(new RegExp("<攻>", 'g'), this.gong)
           .replace(new RegExp("<受>", 'g'), this.shou);
         } else {
@@ -123,17 +122,19 @@
             }
           }
         }
-        this.hasSpecialStory = foundSpecialStory;
-        return filteredStories;
+        return {"stories": filteredStories, "hasSpecialStory": foundSpecialStory};
       },
       btnText: function () {
-        if (this.hasSpecialStory && this.changedCouple) {
+        if (this.availableStories.hasSpecialStory && this.changedCouple) {
           return "解锁定制故事"
         } else if (this.story !== '' && !this.changedCouple) {
           return "再生一个"
         } else {
           return "生成故事"
         }
+      },
+      isSpecial: function () {
+        return this.availableStories.hasSpecialStory ? 'special':''
       },
       couple: function () {
         return this.gong + ' ' + this.shou
@@ -142,7 +143,6 @@
     watch: {
       couple: function (newCouple, oldCouple) {
         if (newCouple !== oldCouple) {
-          console.log(this.couple);
           this.changedCouple = true;
         }
       }
@@ -156,18 +156,23 @@
     }
     .special .form-control {
         border-color: lightcoral !important;
-        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px coral !important;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 127, 80, 0.51) !important;
     }
     .special .input-group-text {
         border-color: lightcoral !important;
-        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px coral !important;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 127, 80, 0.5) !important;
     }
     #write-story.special {
-        background-color: lightcoral;
-        border-color: coral;
+        background-color: orange;
+        border-color: darkorange;
     }
     #write-story.special:focus {
-        border-color: lightcoral !important;
-        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px coral !important;
+        border-color: orange !important;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 127, 80, 0.5) !important;
+    }
+    .input-group-text.special {
+        background-color: lightcoral;
+        border-color: coral;
+        color: white;
     }
 </style>

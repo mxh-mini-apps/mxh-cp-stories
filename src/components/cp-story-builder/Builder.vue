@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="h1">CP短打生成器</h1>
-        <div class="row">
+        <h1 class="card-header text-white bg-primary">CP短打生成器</h1>
+        <div class="card-body row">
             <div class="col-6">
                 <div class="input-group mb-2" :class="isSpecial">
                     <div class="input-group-prepend">
@@ -40,9 +40,11 @@
 <!--                </div>-->
 <!--            </div>-->
 <!--        </div>-->
-        <p class="mb-0 mt-4"><small>文库更新于 2019.10.24 12:00PM</small></p>
-        <span class="badge badge-warning">新功能：解锁定制文提示</span>
-        <span class="badge badge-secondary ml-2">暂停投稿</span>
+        <div class="m-2">
+            <p class="mb-0 mt-4"><small>文库更新于 2019.10.24 12:00PM</small></p>
+            <span class="badge badge-warning">新功能：解锁定制文提示</span>
+            <span class="badge badge-secondary ml-2">暂停投稿</span>
+        </div>
     </div>
 </template>
 

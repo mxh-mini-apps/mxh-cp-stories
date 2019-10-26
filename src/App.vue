@@ -1,9 +1,7 @@
 <template>
   <div id="app" v-cloak class="m-1">
-    <div class="card m-1">
-      <div class="card-body">
+    <div class="card border-primary m-1">
         <builder ref="builder"></builder>
-      </div>
     </div>
     <p style="color: gray;" class="ml-2 mr-2">
       <small>

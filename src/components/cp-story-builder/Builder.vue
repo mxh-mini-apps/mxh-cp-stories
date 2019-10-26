@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>CP短打生成器</h1>
+        <h1 class="h1">CP短打生成器</h1>
         <div class="row">
             <div class="col-6">
                 <div class="input-group mb-2" :class="isSpecial">
@@ -24,7 +24,7 @@
                     :disabled="gong === '' || shou === ''">
                 {{btnText}}
             </button>
-            <button class="btn btn-primary" @click="emailStory" disabled>投稿</button>
+            <button class="btn btn-info" @click="emailStory" disabled>投稿</button>
         </div>
         <div class="text-left ml-4 mr-4">
             <p id="story">{{ story }}</p>
@@ -163,11 +163,11 @@
         box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 127, 80, 0.5) !important;
     }
     #write-story.special {
-        background-color: orange;
-        border-color: darkorange;
+        background-color: lightsalmon;
+        border-color: salmon;
     }
     #write-story.special:focus {
-        border-color: orange !important;
+        border-color: salmon !important;
         box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 127, 80, 0.5) !important;
     }
     .input-group-text.special {

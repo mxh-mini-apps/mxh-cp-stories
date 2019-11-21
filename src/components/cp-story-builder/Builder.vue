@@ -29,21 +29,13 @@
         <div class="text-left ml-4 mr-4">
             <p id="story">{{ story }}</p>
         </div>
-<!--        <div v-if="story !== ''">-->
-<!--            <button class="btn btn-light btn-sm border mb-1" type="button" data-toggle="collapse" data-target="#collapseText" aria-expanded="false" aria-controls="collapseText">-->
-<!--                作者的话-->
-<!--            </button>-->
-<!--            <div class="collapse" id="collapseText">-->
-<!--                <div class="card card-body p-2">-->
-<!--                    <small>-->
-<!--                    </small>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
         <div class="m-2">
             <p class="mb-0 mt-4"><small>文库更新于 2019.10.24 12:00PM</small></p>
-            <span class="badge badge-warning">新功能：解锁定制文提示</span>
-            <span class="badge badge-secondary ml-2">暂停投稿</span>
+            <span class="badge badge-warning">域名更换</span>
+            <span class="badge badge-secondary ml-2">暂停投稿</span><br>
+            <span>此域名内将不做更新，所有文库更新请移步:
+                <a href="https://mxhcpstories.github.io/mxh-cp-stories/" class="m-2">新链接</a>
+            </span><br>
         </div>
     </div>
 </template>

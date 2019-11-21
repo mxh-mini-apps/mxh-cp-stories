@@ -5,7 +5,7 @@
             <div class="col-6">
                 <div class="input-group mb-2" :class="isSpecial">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" :class="isSpecial" for="gong-fang">攻</label>
+                        <label class="input-group-text" :class="isSpecial" for="gong-fang">主角A</label>
                     </div>
                     <input type="text" id="gong-fang" v-model="gong" class="form-control"/>
                 </div>
@@ -13,7 +13,7 @@
             <div class="col-6">
                 <div class="input-group mb-2" :class="isSpecial">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" :class="isSpecial" for="shou-fang">受</label>
+                        <label class="input-group-text" :class="isSpecial" for="shou-fang">主角B</label>
                     </div>
                     <input type="text" id="shou-fang" v-model="shou" class="form-control"/>
                 </div>
@@ -41,8 +41,8 @@
 <!--            </div>-->
 <!--        </div>-->
         <div class="m-2">
-            <p class="mb-0 mt-4"><small>文库更新于 2019.10.24 12:00PM</small></p>
-            <span class="badge badge-warning">新功能：解锁定制文提示</span>
+            <p class="mb-0 mt-4"><small>文库更新于 2019.11.21 16:00PM</small></p>
+            <span class="badge badge-info">更新10篇</span>
             <span class="badge badge-secondary ml-2">暂停投稿</span>
         </div>
     </div>
@@ -91,8 +91,9 @@
         })
       },
       isSpecialNames: function (g, s) {
-        return leaders.includes(g.replace(/\s/g,'').toLowerCase()) ||
-          leaders.includes(s.replace(/\s/g,'').toLowerCase());
+        let gong = g.replace(/\s/g,'').toLowerCase();
+        let shou = s.replace(/\s/g,'').toLowerCase();
+        return leaders.find(a => gong.includes(a)) !== undefined || leaders.find(a => shou.includes(a)) !== undefined;
       },
       emailStory: function () {
         let c = 'mailto:mxhcpstories@yahoo.com?subject=投稿CP短打文&body=（请用\'<攻>\'和\'<受>\'注明故事的攻受，如果想投定制文的话请备注人物姓名哦！内容请勿超过50字。）';

@@ -29,17 +29,6 @@
         <div class="text-left ml-4 mr-4">
             <p id="story">{{ story }}</p>
         </div>
-<!--        <div v-if="story !== ''">-->
-<!--            <button class="btn btn-light btn-sm border mb-1" type="button" data-toggle="collapse" data-target="#collapseText" aria-expanded="false" aria-controls="collapseText">-->
-<!--                作者的话-->
-<!--            </button>-->
-<!--            <div class="collapse" id="collapseText">-->
-<!--                <div class="card card-body p-2">-->
-<!--                    <small>-->
-<!--                    </small>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
         <div class="m-2">
             <p class="mb-0 mt-4"><small>文库更新于 2019.11.21 16:00PM</small></p>
             <span class="badge badge-info">更新10篇</span>

@@ -1,5 +1,5 @@
 # mxh-cp-stories
-To use(软件网页): https://mxh-mini-apps.github.io/mxh-cp-stories/
+To use(软件网页): https://mxhcpstories.github.io/mxh-cp-stories/
 
 ## Project setup
 ```

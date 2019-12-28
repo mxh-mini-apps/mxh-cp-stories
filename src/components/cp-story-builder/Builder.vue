@@ -99,10 +99,6 @@
             title = nouns[this.genRandom(nouns.length)] + '与' +
             nouns[this.genRandom(nouns.length)];
             break;
-          case "N+V":
-            title = nouns[this.genRandom(nouns.length)] +
-              verbs[this.genRandom(verbs.length)];
-            break;
           case "A+N":
             title = adjs[this.genRandom(adjs.length)] +
               nouns[this.genRandom(nouns.length)];

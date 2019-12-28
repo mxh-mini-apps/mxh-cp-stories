@@ -24,21 +24,23 @@
                     :disabled="gong === '' || shou === ''">
                 {{btnText}}
             </button>
-            <button class="btn btn-info" @click="emailStory" disabled>投稿</button>
+            <button class="btn btn-info" @click="emailStory">投稿</button>
         </div>
         <div class="text-left ml-4 mr-4">
             <p id="story">{{ story }}</p>
+            <p id="title" v-if="story !== ''" class="text-center">——《{{ title }}》</p>
         </div>
         <div class="m-2">
-            <p class="mb-0 mt-4"><small>文库更新于 2019.11.21 16:00PM</small></p>
-            <span class="badge badge-info">更新10篇</span>
-            <span class="badge badge-secondary ml-2">暂停投稿</span>
+            <p class="mb-0 mt-4"><small>文库更新于 2019.12.28 6:00AM</small></p>
+            <span class="badge badge-info">更新11篇</span>
+            <span class="badge badge-danger ml-2">开放投稿</span>
         </div>
     </div>
 </template>
 
 <script>
   import stories from '../../assets/story'
+  import titles from '../../assets/title'
   import leaders from '../../assets/leaders'
   export default {
     name: "Search",
@@ -47,6 +49,7 @@
         gong: "",
         shou: "",
         story: "",
+        title: "",
         clicks: 0,
         changedCouple: false
       }
@@ -68,8 +71,58 @@
         } else {
           this.story = ""
         }
+        this.title = this.makeTitle();
         this.changedCouple = false;
         return this.story
+      },
+      makeTitle: function () {
+        let title;
+        let struct = titles.structure[this.genRandom(titles.structure.length)];
+
+        const verbs = titles.verbs;
+        const adjs = titles.adjs;
+        const nouns = titles.nouns;
+        const sayings = titles.saying;
+        switch (struct) {
+          case "A+N+V+N":
+            title = adjs[this.genRandom(adjs.length)] +
+              nouns[this.genRandom(nouns.length)] +
+              verbs[this.genRandom(verbs.length)] +
+              nouns[this.genRandom(nouns.length)];
+            break;
+          case "N+V+N":
+            title = nouns[this.genRandom(nouns.length)] +
+              verbs[this.genRandom(verbs.length)] +
+              nouns[this.genRandom(nouns.length)];
+            break;
+          case "N+N":
+            title = nouns[this.genRandom(nouns.length)] + '与' +
+            nouns[this.genRandom(nouns.length)];
+            break;
+          case "N+V":
+            title = nouns[this.genRandom(nouns.length)] +
+              verbs[this.genRandom(verbs.length)];
+            break;
+          case "A+N":
+            title = adjs[this.genRandom(adjs.length)] +
+              nouns[this.genRandom(nouns.length)];
+            break;
+          case "N":
+            title = nouns[this.genRandom(nouns.length)];
+            break;
+          case "A":
+            title = adjs[this.genRandom(adjs.length)].replace(/的/,'');
+            break;
+          case "V":
+            title = verbs[this.genRandom(verbs.length)];
+            break;
+          case "S":
+            title = sayings[this.genRandom(sayings.length)];
+            break;
+          default:
+            title = '';
+        }
+        return title;
       },
       sendAnalytics: function () {
         this.$ga.event({
@@ -93,6 +146,9 @@
           let j = Math.floor(Math.random() * (i + 1));
           [array[i], array[j]] = [array[j], array[i]];
         }
+      },
+      genRandom: function (len) {
+        return Math.floor(Math.random() * len)
       }
     },
     computed: {

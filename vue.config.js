@@ -1,3 +1,3 @@
-module.exports = {
-  publicPath: 'mxh-cp-stories'
-};
+// module.exports = {
+//   publicPath: 'mxh-cp-stories'
+// };

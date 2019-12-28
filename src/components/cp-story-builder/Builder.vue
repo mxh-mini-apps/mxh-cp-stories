@@ -84,15 +84,8 @@
         const nouns = titles.nouns;
         const sayings = titles.saying;
         switch (struct) {
-          case "A+N+V+N":
-            title = adjs[this.genRandom(adjs.length)] +
-              nouns[this.genRandom(nouns.length)] +
-              verbs[this.genRandom(verbs.length)] +
-              nouns[this.genRandom(nouns.length)];
-            break;
-          case "N+V+N":
-            title = nouns[this.genRandom(nouns.length)] +
-              verbs[this.genRandom(verbs.length)] +
+          case "V+N":
+            title = verbs[this.genRandom(verbs.length)] + "的" +
               nouns[this.genRandom(nouns.length)];
             break;
           case "N+N":

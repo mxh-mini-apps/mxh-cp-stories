@@ -22,6 +22,7 @@
         此软件只限用于休闲娱乐，所有故事均为匿名投稿提供。如有雷同，纯属巧合。
         最终解释权归CP短打生成器作者所有。 如有疑问或者发现了bug，请联系作者。<br>
         联系方式：mxhcpstories@yahoo.com<br>
+        <a href="https://github.com/mxh-mini-apps/mxh-cp-stories">Github传送门（喜欢的朋友赞一个呀！）</a>
       </small>
     </p>
   </div>

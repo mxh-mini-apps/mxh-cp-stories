@@ -31,8 +31,9 @@
             <p id="title" v-if="story !== ''" class="text-center">——《{{ title }}》</p>
         </div>
         <div class="m-2">
-            <p class="mb-0 mt-4"><small>文库更新于 2019.12.28 6:00AM</small></p>
-            <span class="badge badge-info">更新11篇</span>
+            <p class="mb-0 mt-4"><small>文库更新于 2020.02.23 10:50AM</small></p>
+            <p><small><strong>疫情期间大家要勤洗手多通风，好好照顾自己哦！</strong></small></p>
+            <span class="badge badge-info">更新40篇</span>
             <span class="badge badge-danger ml-2">开放投稿</span>
         </div>
     </div>

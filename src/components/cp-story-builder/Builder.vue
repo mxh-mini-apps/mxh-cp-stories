@@ -28,12 +28,16 @@
         </div>
         <div class="text-left ml-4 mr-4">
             <p id="story">{{ story }}</p>
-            <p id="title" v-if="story !== ''" class="text-center">——《{{ title }}》</p>
+            <p hidden id="title" v-if="story !== ''" class="text-center">——《{{ title }}》</p>
         </div>
         <div class="m-2">
-            <p class="mb-0 mt-4"><small>文库更新于 2020.02.23 10:50AM</small></p>
+            <p class="mb-0 mt-4">
+                <small>文库更新于 2020.02.25 2:00PM</small><br>
+                <small>已收录短打文段：{{availableStories.stories.length}}</small>
+                <small v-if="availableStories.specialCount>0">（包含{{availableStories.specialCount}}篇定制文）</small>
+            </p>
             <p><small><strong>疫情期间大家要勤洗手多通风，好好照顾自己哦！</strong></small></p>
-            <span class="badge badge-info">更新40篇</span>
+            <span class="badge badge-info">更新29篇</span>
             <span class="badge badge-danger ml-2">开放投稿</span>
         </div>
     </div>
@@ -144,6 +148,7 @@
     computed: {
       availableStories: function () {
         let filteredStories = [];
+        let specialCount = 0;
         let foundSpecialStory = false;
         for (let i=0; i < stories.length; i++) {
           let roleGong = stories[i]['roles']['gong'];
@@ -151,8 +156,10 @@
           let roleStories = stories[i]['stories'];
           if (roleGong === 'ALL' || this.gong.includes(roleGong)){
             if (roleShou === 'ALL' || this.shou.includes(roleShou)) {
+              // if this isn't in the last category, then it is a special story
               if (i !== stories.length - 1) {
                 foundSpecialStory = true;
+                specialCount += stories[i]['stories'].length;
                 this.$forceUpdate()
               }
               this.shuffle(roleStories);
@@ -160,7 +167,7 @@
             }
           }
         }
-        return {"stories": filteredStories, "hasSpecialStory": foundSpecialStory};
+        return {"stories": filteredStories, "hasSpecialStory": foundSpecialStory, "specialCount": specialCount};
       },
       btnText: function () {
         if (this.availableStories.hasSpecialStory && this.changedCouple) {

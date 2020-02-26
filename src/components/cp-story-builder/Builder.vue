@@ -32,12 +32,12 @@
         </div>
         <div class="m-2">
             <p class="mb-0 mt-4">
-                <small>文库更新于 2020.02.25 2:00PM</small><br>
+                <small>文库更新于 2020.02.26 2:00PM</small><br>
                 <small>已收录短打文段：{{availableStories.stories.length}}</small>
                 <small v-if="availableStories.specialCount>0">（包含{{availableStories.specialCount}}篇定制文）</small>
             </p>
             <p><small><strong>疫情期间大家要勤洗手多通风，好好照顾自己哦！</strong></small></p>
-            <span class="badge badge-info">更新29篇</span>
+            <span class="badge badge-info">更新30篇</span>
             <span class="badge badge-danger ml-2">开放投稿</span>
         </div>
     </div>

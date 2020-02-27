@@ -22,6 +22,7 @@
         此软件只限用于休闲娱乐，所有故事均为匿名投稿提供。如有雷同，纯属巧合。
         最终解释权归CP短打生成器作者所有。 如有疑问或者发现了bug，请联系作者。<br>
         联系方式：mxhcpstories@yahoo.com<br>
+        友情链接：<a href="https://shadiao.app/">沙雕APP</a> 包括彩虹屁生成器、朋友圈生成器等其他好玩的生成器<br>
         <a href="https://github.com/mxh-mini-apps/mxh-cp-stories">Github传送门（喜欢的朋友赞一个呀！）</a>
       </small>
     </p>

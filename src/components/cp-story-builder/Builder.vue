@@ -24,7 +24,7 @@
                     :disabled="gong === '' || shou === ''">
                 {{btnText}}
             </button>
-            <button class="btn btn-info" @click="emailStory">投稿</button>
+            <button disabled class="btn btn-info" @click="emailStory">投稿</button>
         </div>
         <div class="text-left ml-4 mr-4">
             <p id="story">{{ story }}</p>
@@ -38,7 +38,7 @@
             </p>
             <p><small><strong>疫情期间大家要勤洗手多通风，好好照顾自己哦！</strong></small></p>
             <span class="badge badge-info">更新30篇</span>
-            <span class="badge badge-danger ml-2">开放投稿</span>
+            <span class="badge badge-warning ml-2">关闭投稿</span>
         </div>
     </div>
 </template>
